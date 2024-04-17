@@ -1,48 +1,50 @@
-(function(){
-    var cnv = document.querySelector("canvas");
-    ctx = cnv.getContext("2d");
-    var maze = [
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-    ]
+var direcaoX;
+var direcaoY;
+var positionX;
+var positionY;
+var obj;
+var temp;
+var velocit;
 
-    function update(){}
-
-    function render(){
-        for(let i in maze ){
-            for(let j in maze[i]){
-                let  tile = maze[i][j];
-                if(tile === 1 ){
-                    let  x = i * 32;
-                    let  y = j * 32;
-                    ctx.filReact(x,y,32,32);
-                }
-            }
-
-        }
+function iniciar(){
+    direcaoX = 0;
+    direcaoY = 0;
+    positionX = 41;
+    positionY = 41;
+    obj = document.getElementById("dv1");
+    document.addEventListener("keydown", teclaDw);
+    document.addEventListener("keyup", teclaUp);
+    temp =  setInterval(updateFrame, 20);
+    velocit = 2;
+}
+function teclaDw(){
+    var tecla = event.keyCode;
+    if(tecla === 65){
+        direcaoX = -1;
+    } else if(tecla === 87){
+        direcaoY = -1;
+    } else if (tecla === 68){
+        direcaoX = 1;
+    } else if(tecla === 83){
+        direcaoY = 1;
     }
-
-    function loop(){
-        update();
-        loop();
+}
+function teclaUp(){
+    var tecla = event.keyCode;
+    if(tecla === 65){
+        direcaoX = 0;
+    }else if(tecla === 87){
+        direcaoY = 0;
+    }else if(tecla === 68){
+        direcaoX = 0;
+    }else if(tecla === 83){
+        direcaoY  = 0;
     }
-
-}());
+}
+function updateFrame(){
+    positionX += direcaoX * velocit;
+    positionY += direcaoY * velocit;
+    obj.style.left = positionX + "px";
+    obj.style.top = positionY + "px";
+}
+window.addEventListener("load", iniciar)
