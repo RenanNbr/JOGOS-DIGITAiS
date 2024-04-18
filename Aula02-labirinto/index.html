@@ -13,7 +13,17 @@
             position: absolute;
             top: 41px;
             left: 41px;
+        
         }
+        canvas{
+		border: solid 1px;
+		position: absolute;
+		margin-right: 50%;
+		margin-left: 50%;
+		left: -300px;
+		top: 30px;
+	}
+        
     </style>
 </head>
 <body>
@@ -72,8 +82,11 @@
             requestAnimationFrame(loop,cnv);
         }
         requestAnimationFrame(loop, cnv);
+
+
+
         }());
     </script>
-    <script src="./jogo.js"></script>
+    <script src="./movimento.js"></script>
 </body>
 </html>
