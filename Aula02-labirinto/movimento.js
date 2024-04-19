@@ -1,3 +1,8 @@
+
+///////////////////////////////////////////////////////////////////////
+
+//movimento
+
 var direcaoX;
 var direcaoY;
 var positionX;
@@ -48,4 +53,7 @@ function updateFrame(){
     obj.style.top = positionY + "px";
 }
 window.addEventListener("load", iniciar)
+
+
+
 
