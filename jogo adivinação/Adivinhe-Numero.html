@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Adivinhe o numero</h1>
+    <p>digite um numero de 1 a 100</p>
+    <input type="text" id="campoChute">
+    <button onclick="verificaChute()">enviar palpite</button>
+    <p id="resultado"></p>
+
+
+
+<script>
+    const numeroAle = Math.floor(Math.random()* 100) + 1;
+    let tentativa = 0;
+
+    function verificaChute() {
+        const chute = parseInt(document.getElementById('campoChute').value);
+        tentativa ++; 
+
+      if(chute === numeroAle){
+        document.getElementById('resultado').textContent =`parabens voce acertou o numero em ${tentativa} tentativas`
+        
+       
+      }else if(chute > numeroAle){
+        document.getElementById('resultado').textContent =`tente um numero menor`
+      }else if(chute < numeroAle){
+      document.getElementById('resultado').textContent =`tente um numero maior`
+    }
+
+    
+        
+
+      
+
+    }console.log(numeroAle)
+
+
+
+</script>
+
+
+</body>
+</html>
